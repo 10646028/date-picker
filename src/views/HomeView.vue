@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+        <h1>Welcome to date-picker App</h1>
     <DatePicker/>
   </div>
 </template>
