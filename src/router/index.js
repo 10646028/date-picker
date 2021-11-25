@@ -22,9 +22,15 @@ const routes = [
   }
 ]
 
+function getAbsolutePath () {
+  let path = location.pathname
+  return path.substring(0, path.lastIndexOf('/') + 1)
+}
+
 const router = createRouter({
   history: createWebHistory('/date-picker/'),
-  routes
+  routes,
+  base: getAbsolutePath(),
 })
 
 export default router
