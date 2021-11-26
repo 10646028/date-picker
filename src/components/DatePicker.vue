@@ -44,8 +44,8 @@ export default {
       dayjs.extend(customParseFormat)
 
       var tableData = [{
-        start: dayjs(this.$route.query.startTime).day(1).format('YYYY年M月DD日 (一)'),
-        end: dayjs(this.$route.query.startTime).day(1).add(13, 'd').format('YYYY年M月DD日 (日)')
+        "start": dayjs(this.$route.query.startTime).day(1).format('YYYY年M月DD日 (一)'),
+        "end"  : dayjs(this.$route.query.startTime).day(1).add(13, 'd').format('YYYY年M月DD日 (日)')
       }];
 
       for (var i=1; i<12; i++){
