@@ -1,8 +1,8 @@
-<template v-for="col in tabledate">
+<template>
   <div id="date-picker">
-
     <p>{{ now }}+8 Asia/Taipei </p>
-
+    Please fill in date: <input type="text" v-model="inputdate" maxlength="8"><br />
+    <br />
     <table>
       <tr>
         <th>Nth</th>
@@ -14,9 +14,7 @@
         <td> {{ item.start }}</td>
         <td> {{ item.end }}</td>
       </tr>
-
     </table>
-
   </div>
 </template>
 
@@ -36,29 +34,34 @@ export default {
   },
   methods: {
     getURL: function(){
-      dayjs.locale('zh-tw')
-      this.now = dayjs().add(8, 'h')
+      dayjs.locale('zh-tw');
+      this.now = dayjs().add(8, 'h');
     },
     getPeriod: function(){
       // https://programmer-note.hatenablog.com/entry/2021/09/29/182707
-      this.dayjs = inject('dayjs')
-      var customParseFormat = require('dayjs/plugin/customParseFormat')
-      dayjs.extend(customParseFormat)
-
-      // this.inputdate = this.$route.query.startTime;
-      
+      this.dayjs = inject('dayjs');
+      var customParseFormat = require('dayjs/plugin/customParseFormat');
+      dayjs.extend(customParseFormat);
+ 
       // 優先順序:
-      // 1. get URL
+      // 1. get inputdate
       // 2. get localStorage
-      // 3. get today
-      if(this.$route.query.startTime){
-        this.inputdate = this.$route.query.startTime;
-        localStorage.datePickerDate = this.$route.query.startTime;
-        this.getDate = this.inputdate;
-      }else if (localStorage.datePickerDate){
+      // 3. get URL
+      // 4. get today
+      console.log(this.inputdate)
+      if (this.inputdate!=null){
+        localStorage.datePickerDate = this.inputdate
         this.getDate = localStorage.datePickerDate
       }else{
-        this.getDate = this.now.day(1).format('YYYY年M月DD日 (一)')
+        if(localStorage.datePickerDate){
+          this.getDate = localStorage.datePickerDate
+          this.inputdate = localStorage.datePickerDate
+        }else if (this.$route.query.startTime){
+          localStorage.datePickerDate = this.$route.query.startTime;
+          this.getDate = localStorage.datePickerDate
+        }else{
+          this.getDate = this.now.day(1).format('YYYY年M月DD日 (一)')
+        }
       }
 
       var tableData = [{
@@ -71,15 +74,29 @@ export default {
         tableData.push({
           "start": dayjs(this.getDate).day(1).add(period+(1*i), 'd').format('YYYY年M月DD日 (一)'), 
           "end"  : dayjs(this.getDate).day(1).add(period+1*13+i, 'd').format('YYYY年M月DD日 (日)')
-        })
+        });
       }
-      this.tableDataStart = tableData
+
+      this.tableDataStart = tableData;
+      var startTime1 = this.tableDataStart[0].start
+      var endTime1 = this.tableDataStart[0].end
+      var startTime2 = this.tableDataStart[1].start
+      var endTime2 = this.tableDataStart[1].end
+      localStorage.datePickerDateStartTime1 = startTime1;
+      localStorage.datePickerDateEndTime1 = endTime1;
+      localStorage.datePickerDateStartTime2 = startTime2;
+      localStorage.datePickerDateEndTime2 = endTime2;
     },
   },
   mounted(){
     this.getURL();
     this.getPeriod();
   },
+  watch:{
+    inputdate: function(){
+      this.getPeriod();
+    }
+  }
 }
 </script>
 
@@ -88,7 +105,6 @@ export default {
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 80%;
   margin: 0 auto;
 }
 
@@ -102,4 +118,10 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 
+@media (max-width: 768px) {
+  table{
+    font-size: 12px;
+    white-space: nowrap;
+  }
+}
 </style>

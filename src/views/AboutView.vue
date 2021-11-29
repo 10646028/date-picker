@@ -1,12 +1,12 @@
 <template>
   <div class="about">
-    <h1>date-picker for crazy writers</h1>
+    <h1>Date-picker for Crazy Writers</h1>
     <img alt="Vue logo" src="../assets/logo.png">
     <p><a href="mailto:just951753@gmail.com">Contact mailto: just951753@gmail.com</a></p>
   </div>
 </template>
 
-<style>
+<style scoped>
 img{
   width: 100%;
   max-width: 500px;
@@ -20,4 +20,7 @@ img{
   color: #42b983;
 }
 
+h1 {
+  font-size: 1.5rem;
+}
 </style>
