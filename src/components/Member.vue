@@ -90,7 +90,6 @@ export default {
       this.display = 'none';
     },
     tableDispatch: function(){
-      this.clearLocalStorage();
       this.memberArrary = [this.member1, this.member2, this.member3, this.member4, this.member5,this.member6, this.member7]
       this.formemberArrary= [{
         'name': '要回饋其他人','one': '第一輪', 'two': '第二輪'
