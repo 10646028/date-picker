@@ -11,20 +11,34 @@
 
     <button @click='submit'>submit</button><button @click='hidden'>hidden</button>
 
-    <table v-bind:style="{display: display}">
-      <tr v-for="(item) in this.formemberArrary" :key="item" >
-        <td> {{ item.name }}</td>
-        <td> {{ item.one }}</td>
-        <td> {{ item.two }}</td>
-      </tr>
+    <table v-bind:style="{display: display}" class="memberTable">
+      <thead>
+        <tr>
+          <th>要回饋其他人</th><th colspan=3>第一輪</th><th colspan=3>第二輪</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item) in this.formemberArrary" :key="item" >
+          <td> {{ item.name }}</td>
+          <td> {{ item.one[0] }}</td><td> {{ item.one[1] }}</td><td> {{ item.one[2] }}</td>
+          <td> {{ item.two[0] }}</td><td> {{ item.two[1] }}</td><td> {{ item.two[2] }}</td>
+        </tr>
+      </tbody>
     </table>
   <br>
-    <table v-bind:style="{display: display}">
-      <tr v-for="(item) in this.getmemberArrary" :key="item" >
-        <td> {{ item.name }}</td>
-        <td> {{ item.one }}</td>
-        <td> {{ item.two }}</td>
-      </tr>
+    <table v-bind:style="{display: display}" class="memberTable">
+      <thead>
+        <tr>
+          <th>會收到的回饋</th><th colspan=3>第一輪</th><th colspan=3>第二輪</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item) in this.formemberArrary" :key="item" >
+          <td> {{ item.name }}</td>
+          <td> {{ item.one[0] }}</td><td> {{ item.one[1] }}</td><td> {{ item.one[2] }}</td>
+          <td> {{ item.two[0] }}</td><td> {{ item.two[1] }}</td><td> {{ item.two[2] }}</td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </template>
@@ -45,7 +59,7 @@ export default {
       member7: null,
       memberArrary: [],
       formemberArrary: [{
-        'name': '寫給其他人回饋','one': '第一輪', 'two': '第二輪'
+        'name': '要回饋其他人','one': '第一輪', 'two': '第二輪'
       }],
       getmemberArrary: [{
         'name': '會收到的回饋','one': '第一輪', 'two': '第二輪'
@@ -182,22 +196,45 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-table {
+.memberTable {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   margin: 0 auto;
 }
 
-td,
-th {
-  border: 1px solid #dddddd;
+.memberTable td,
+.memberTable th {
+  border: 1px solid #CCE3DE;
   text-align: left;
   padding: 8px;
 }
-
-tr:nth-child(even) {
-  background-color: #dddddd;
+.memberTable tbody tr:nth-child(1) {
+  display: none;
 }
+
+.memberTable tbody tr:nth-child(even) {
+  background-color: #EAF4F4;
+}
+/* .memberTable tbody tr:nth-child(3) {
+  background-color: #FAE1DD;
+}
+.memberTable tbody tr:nth-child(4) {
+  background-color: #F8EDEB;
+}
+.memberTable tbody tr:nth-child(5) {
+  background-color: #E8E8E4;
+}
+.memberTable tbody tr:nth-child(6) {
+  background-color: #D8E2DC;
+}
+.memberTable tbody tr:nth-child(7) {
+  background-color: #ECE4DB;
+}
+.memberTable tbody tr:nth-child(8) {
+  background-color: #FFE5D9;
+} */
+
+
 button {
   margin: 1rem auto;
 }
@@ -207,7 +244,7 @@ input{
   padding: 0.2rem;
 }
 @media (max-width: 768px) {
-  table {
+  .memberTable {
     font-size: 12px;
     white-space: nowrap;
   }
