@@ -1,7 +1,7 @@
 <template>
   <div id="date-picker">
     <p>{{ now }}+8 Asia/Taipei </p>
-    Please fill in date: <input type="text" v-model="inputdate" maxlength="8"><br />
+    Please fill in date: <input type="date" v-model="inputdate" maxlength="8"><br />
     <br />
     <table>
       <tr>
