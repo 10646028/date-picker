@@ -58,7 +58,8 @@ export default {
           this.inputdate = localStorage.datePickerDate
         }else if (this.$route.query.startTime){
           localStorage.datePickerDate = this.$route.query.startTime;
-          this.getDate = localStorage.datePickerDate
+          this.inputdate = this.$route.query.startTime;
+          this.getDate = localStorage.datePickerDate;
         }else{
           this.getDate = this.now.day(1).format('YYYY年M月DD日 (一)')
         }
