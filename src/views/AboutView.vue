@@ -2,7 +2,7 @@
   <div class="about">
     <h1>Date-picker for Crazy Writers</h1>
     <img alt="Vue logo" src="../assets/logo.png">
-    <p><a href="mailto:yuiyee1235@gmail.com">Contact mailto: yuiyee1235@gmail.com</a></p>
+    <p><a href="mailto:flin951753@gmail.com">Contact mailto: flin951753@gmail.com</a></p>
   </div>
 </template>
 

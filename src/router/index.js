@@ -19,7 +19,11 @@ const routes = [
     path: '/member',
     name: 'member',
     component: () => import('../views/MemberView.vue')
-  }
+  },
+  {
+    path:'/*',
+    redirect: '/'
+  },
 ]
 
 function getAbsolutePath () {

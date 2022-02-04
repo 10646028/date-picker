@@ -5,7 +5,7 @@
     <router-link to="/about">About</router-link>
   </nav>
   <router-view/>
-  <footer>Copyright © Daisy All rights reserved.</footer>
+  <footer>Copyright © Fei All rights reserved.</footer>
 </template>
 
 <style>
