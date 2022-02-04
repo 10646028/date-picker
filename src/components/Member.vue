@@ -152,7 +152,7 @@ export default {
         });
       }
 
-    console.log(this.formemberArrary)      
+    // console.log(this.formemberArrary)      
     },
     clearLocalStorage: function(){
       localStorage.removeItem('datePickerMember1');

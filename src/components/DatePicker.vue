@@ -48,7 +48,7 @@ export default {
       // 2. get localStorage
       // 3. get URL
       // 4. get today
-      console.log(this.inputdate)
+      // console.log(this.inputdate)
       if (this.inputdate!=null){
         localStorage.datePickerDate = this.inputdate
         this.getDate = localStorage.datePickerDate
